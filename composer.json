@@ -1,0 +1,30 @@
+{
+    "name": "vdechenaux/brotli",
+    "description": "Add brotli compress/uncompress functions to PHP",
+    "keywords": ["brotli"],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vincent Dechenaux",
+            "email": "vincent.dechenaux@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "VDX\\Brotli\\": "src/"
+        },
+        "files": ["src/functions.php"]
+    },
+    "require": {
+        "php": "^7.1",
+        "symfony/process": "^3.3|^4.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.0"
+    },
+    "suggest": {
+        "vdechenaux/brotli-bin-amd64": "Brotli binary for Linux amd64",
+        "vdechenaux/brotli-bin-i386": "Brotli binary for Linux i386"
+    }
+}

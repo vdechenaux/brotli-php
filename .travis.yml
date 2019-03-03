@@ -1,0 +1,26 @@
+language: php
+
+notifications:
+  email:
+    on_success: never
+
+php:
+  - 7.1
+  - 7.2
+  - 7.3
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+env:
+  matrix:
+    - PREFER_LOWEST="--prefer-lowest"
+    - PREFER_LOWEST=""
+
+before_script:
+  - composer require vdechenaux/brotli-bin-amd64
+  - composer update --no-interaction $PREFER_LOWEST
+
+script:
+  - vendor/bin/phpunit
