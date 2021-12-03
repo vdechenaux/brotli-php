@@ -15,11 +15,11 @@ final class BrotliTest extends TestCase
 
         $compressed = $useFunctions ? brotli_compress($data, $quality) : Brotli::compress($data, $quality);
 
-        self::assertNotSame($data, $compressed);
+        $this->assertNotSame($data, $compressed);
 
         $uncompressed = $useFunctions ? brotli_uncompress($compressed) : Brotli::uncompress($compressed);
 
-        self::assertSame($data, $uncompressed);
+        $this->assertSame($data, $uncompressed);
     }
 
     public function compressDataProvider()
@@ -52,18 +52,17 @@ final class BrotliTest extends TestCase
         ];
     }
 
-    /**
-     * @expectedException \VDX\Brotli\Exception\CorruptInputException
-     * @expectedExceptionMessage Input data is not valid Brotli.
-     */
+ 
     public function test decode non brotli data()
-    {
+    {  
+        $this->expectException(VDX\Brotli\Exception\CorruptInputException::class);
+        $this->expectExceptionMessage('Input data is not valid Brotli.');
         Brotli::uncompress('this is not brotli');
     }
 
     public function test compress and uncompress empty string()
     {
-        self::assertSame('', Brotli::uncompress(Brotli::compress('')));
+        $this->assertSame('', Brotli::uncompress(Brotli::compress('')));
     }
 
     /**
@@ -72,7 +71,8 @@ final class BrotliTest extends TestCase
      */
     public function test invalid quality(int $quality)
     {
-        self::expectExceptionMessage('The quality value is invalid. Must be between 0 and 11, '.$quality.' given.');
+        $this->expectException(\VDX\Brotli\Exception\InvalidQualityException::class);
+        $this->expectExceptionMessage('The quality value is invalid. Must be between 0 and 11, '.$quality.' given.');
 
         Brotli::compress('hello', $quality);
     }
