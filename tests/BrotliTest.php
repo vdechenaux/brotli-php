@@ -66,7 +66,6 @@ final class BrotliTest extends TestCase
     }
 
     /**
-     * @expectedException \VDX\Brotli\Exception\InvalidQualityException
      * @dataProvider invalidQualityDataProvider
      */
     public function test invalid quality(int $quality)
