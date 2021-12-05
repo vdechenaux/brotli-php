@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/vdechenaux/brotli-php.svg?branch=master)](https://travis-ci.org/vdechenaux/brotli-php)
+[![CircleCI](https://circleci.com/gh/vdechenaux/brotli-php/tree/master.svg?style=svg)](https://circleci.com/gh/vdechenaux/brotli-php/tree/master)
 
 # Features
 

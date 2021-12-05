@@ -1,0 +1,37 @@
+version: 2.1
+
+workflows:
+  main:
+    jobs:
+      - unit-tests:
+          matrix:
+            parameters:
+              version: ["7.1", "7.2", "7.3", "7.4"]
+              installBinary: 
+                - composer require vdechenaux/brotli-bin-amd64
+                - sudo apt-get update && sudo apt-get install -y brotli
+              preferLowest: ["--prefer-lowest", ""]
+
+jobs:
+  unit-tests:
+    parameters:
+      version:
+        type: string
+      installBinary:
+        type: string
+      preferLowest:
+        type: string
+    docker:
+      - image: circleci/php:<< parameters.version >>-cli
+    steps:
+      - checkout
+      - run:
+          name: "Composer"
+          command: composer update --no-interaction << parameters.preferLowest >>
+      - run:
+          name: "Brotli binary"
+          command: << parameters.installBinary >>
+      - run:
+          name: "PHPUnit"
+          command: |
+            vendor/bin/phpunit
