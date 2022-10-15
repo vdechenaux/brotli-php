@@ -2,7 +2,7 @@
 
 # Features
 
-This library adds Brotli support to PHP (>= 7.1)
+This library adds Brotli support to PHP (>= 7.4)
 
 ```php
 function brotli_compress(string $data, int $quality = 11): string

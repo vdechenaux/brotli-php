@@ -6,7 +6,7 @@ workflows:
       - unit-tests:
           matrix:
             parameters:
-              version: ["7.4", "8.0"]
+              version: ["7.4", "8.0", "8.1"]
               installBinary: 
                 - composer require vdechenaux/brotli-bin-amd64
                 - sudo apt-get update && sudo apt-get install -y brotli
