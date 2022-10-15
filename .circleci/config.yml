@@ -22,7 +22,7 @@ jobs:
       preferLowest:
         type: string
     docker:
-      - image: circleci/php:<< parameters.version >>-cli
+      - image: cimg/php:<< parameters.version >>
     steps:
       - checkout
       - run:
